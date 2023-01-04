@@ -4,14 +4,18 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "@next/font": "13.0.7",
+    "formik": "^2.2.9",
     "next": "13.0.7",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-google-recaptcha": "^2.1.0",
+    "sass": "^1.57.1",
+    "the-new-css-reset": "^1.7.3",
+    "yup": "^0.32.11"
   }
 }

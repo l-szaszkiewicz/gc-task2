@@ -1,0 +1,243 @@
+.project_evaluate {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: start;
+    gap: 2vw;
+    margin: 3.5vw 4.4vw 0 0;
+
+    label {
+        position: relative;
+    }
+
+    input {
+        border: 1px solid black;
+
+        &[type='text'],
+        &[type='email'] {
+            padding: 1.1em 1em;
+            font-size: clamp(.75rem, 0.5rem + 0.7vw, 1.25rem);
+            width: 44.2vw;
+        }
+
+        &[type='checkbox'] {
+            position: relative;
+            width: .9em;
+            height: .9em;
+            border: 1px solid black;
+            border-radius: 5px;
+            flex-shrink: 0;
+
+            &::after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 80%;
+                height: 80%;
+                border-radius: 3px;
+                background-color: var(--c-orange);
+                transform: translate(-50%, -50%) scale(0);
+                transition: transform .3s ease;
+            }
+
+            &:checked::after {
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+    }
+
+    textarea {
+        border: 1px solid black;
+        resize: vertical;
+        margin-top: 0.7vw;
+        padding: 1.1em 1em;
+        font-size: 0.8em;
+        min-height: 15.6em;
+    }
+
+    input,
+    textarea {
+        &::placeholder {
+            color: var(--c-l-gray);
+        }
+    }
+
+    button {
+        position: relative;
+        padding: 0.7em 3.9em;
+        font-size: clamp(0.9rem, 0.5rem + 0.8vw, 1.5rem);
+        margin-top: 0.4vw;
+        color: white;
+        display: grid;
+        place-items: center;
+        place-self: end;
+        grid-column: 2;
+        text-transform: uppercase;
+        cursor: pointer;
+
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+        }
+
+        &::before {
+            background: black;
+            width: 100%;
+            z-index: -2;
+        }
+
+        &::after {
+            background: var(--c-orange);
+            width: 0;
+            z-index: -1;
+            transition: width .3s ease;
+        }
+
+        &:hover {
+            &::after {
+                width: 100%;
+            }
+        }
+    }
+
+
+    @media (max-width: 34em) {
+        grid-template-columns: 1fr;
+        margin-right: 0;
+        row-gap: 1.4em;
+
+        input {
+
+            &[type='text'],
+            &[type='email'] {
+                width: 100%;
+            }
+
+            &[type='checkbox'] {
+                margin-top: 0.1em;
+            }
+        }
+
+        button {
+            grid-column: 1/-1;
+            width: 100%;
+        }
+
+    }
+}
+
+
+.error_message {
+    position: absolute;
+    color: var(--c-orange);
+    bottom: -1.2em;
+    font-size: clamp(0.7rem, 0.5rem + 0.5vw, 1.1rem);
+    z-index: -1;
+}
+
+.check {
+    &_wrapper {
+        grid-column: 1/-1;
+        margin-top: 0.7vw;
+
+        label {
+            font-size: clamp(1rem, 0.5rem + 1vw, 1.6rem);
+            display: inline-flex;
+            align-items: center;
+            justify-content: flex-start;
+            flex-direction: row-reverse;
+            margin-right: 0.8em;
+            column-gap: 0.5em;
+            cursor: pointer;
+            letter-spacing: 0.05em;
+        }
+    }
+
+    &_header {
+        position: relative;
+        font-size: clamp(1.2rem, 0.5rem + 1.2vw, 1.9rem);
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        margin-bottom: 1.8vw;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: -0.7vw;
+            left: -1.7vw;
+            width: 3px;
+            height: 1.7em;
+            background-color: var(--c-orange);
+        }
+
+        &::after {
+            content: '.';
+            color: var(--c-orange);
+        }
+    }
+
+    @media (max-width: 34em) {
+        &_wrapper {
+            margin-top: 1em;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            justify-items: start;
+            align-items: start;
+
+            label {
+                align-items: start;
+                margin: .4em 0;
+            }
+        }
+
+        &_header {
+            grid-column: 1/-1;
+            margin-bottom: 1em;
+        }
+    }
+}
+
+.message {
+    grid-column: 1/-1;
+    margin-top: 1.4vw;
+    display: flex;
+    flex-direction: column;
+    font-size: clamp(1rem, 0.5rem + 1vw, 1.6rem);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+
+    .error_message {
+        top: 0;
+        left: 0;
+        font-size: 0.8em;
+        margin: 0.2em 0 0 6ch;
+    }
+}
+
+.consent {
+    grid-column: 1/-1;
+    margin: -1.7vw 1.6em 0 0;
+    display: flex;
+    flex-direction: row-reverse;
+    column-gap: 0.7em;
+    font-size: clamp(0.7rem, 0.5rem + 0.5vw, 1.1rem);
+    line-height: 1.5;
+
+    input[type='checkbox'] {
+        margin-top: 0.3em;
+        width: 1.2em;
+        height: 1.2em;
+    }
+
+    .error_message {
+        left: 1.9em;
+    }
+
+    @media (max-width: 34em) {
+        margin-right: 0;
+    }
+}
